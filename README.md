@@ -8,4 +8,4 @@ Developed using
 - Jetpack Compose
 - Kotlin Coroutines
 
-![Overview](https://imgur.com/AHUTskc)
+![Overview](https://i.imgur.com/AHUTskc.gif)
