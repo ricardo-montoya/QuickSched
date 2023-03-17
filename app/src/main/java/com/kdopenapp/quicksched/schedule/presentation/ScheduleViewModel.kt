@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class ScheduleViewModel @Inject constructor(
@@ -20,27 +21,42 @@ class ScheduleViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        dummyInsert()
+        //dummyInsert()
+        getSubjects()
     }
 
+    /*
     fun dummyInsert() {
         runBlocking {
-            val timeBlock = TimeBlock(days = listOf(Days.MONDAY), endHour = 19, endMinutes = 20, hourStart = 20, minutesStart = 10)
-            val newSub = SubjectLocal(id = null, name ="Empty", description = "Nothing", color = 2, timeBlocks = listOf(timeBlock))
+            val timeBlock = TimeBlock(days = listOf(Days.MONDAY), hourEnd = 19, minuteEnd = 20, hourStart = 20, minuteStart = 10)
+            val newSub = SubjectLocal(id = null, name ="Empty", description = "Nothing", color = Random.nextInt(1,7), timeBlocks = listOf(timeBlock))
             subjectRepository.insertSubject(newSub.toSubjectEntity())
+        }
+        getSubjects()
+    }
+    */
+    fun insertNewSubject(subject: SubjectLocal) {
+        runBlocking {
+            subjectRepository.insertSubject(subject = subject.toSubjectEntity())
         }
         getSubjects()
     }
 
     private val _state = mutableStateOf(SubjectState())
-    public val state = _state
+    val state = _state
 
     fun getSubjects() {
-        subjectRepository.getSubjects().onEach {subjectList ->
+        subjectRepository.getSubjects().onEach { subjectList ->
             _state.value = SubjectState(data = subjectList.map { subject ->
                 subject.toSubjectLocal()
             })
         }.launchIn(viewModelScope)
+    }
+
+    fun deleteSubject(subject: SubjectLocal) {
+        runBlocking {
+            subjectRepository.deleteSubject(subject = subject.toSubjectEntity())
+        }
     }
 
 }

@@ -25,7 +25,12 @@ fun ScheduleTabs(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth().padding(start = 5.dp, top = 3.dp, bottom = 0.dp)
         ) {
-            Text(text = "QuickSched!", fontWeight = FontWeight.Bold, modifier = Modifier.padding(0.dp))
+            Text(
+                text = "QuickSched!",
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(0.dp)
+            )
             IconButton(onClick = { navigate(Destinations.CreateSubject.route)}
                 , modifier = Modifier.padding(vertical = 0.dp)
             ) {
