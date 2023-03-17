@@ -1,4 +1,11 @@
 # QuickSched
-First backup (18/02/2023)
-Second backup (17/03/20023)
-[https://imgur.com/AHUTskc]
+## About
+
+QuickSched is a minimal schedule to manage your time
+
+Developed using 
+- Room
+- Jetpack Compose
+- Kotlin Coroutines
+
+![Overview](https://imgur.com/AHUTskc)
